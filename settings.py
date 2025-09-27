@@ -7,21 +7,19 @@ load_dotenv()
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-# ===================== Render Production Settings =====================
+# ===================== Security =====================
 SECRET_KEY = os.getenv('SECRET_KEY', 'django-insecure-default-key')
 DEBUG = False
 ALLOWED_HOSTS = [
     '127.0.0.1',
     'localhost',
-    'codealpha-e-commarce.onrender.com'
+    '.onrender.com'
 ]
-
 CSRF_TRUSTED_ORIGINS = [
     'https://codealpha-e-commarce.onrender.com'
 ]
 
-
-# ===================== Application definition =========================
+# ===================== Apps =========================
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
@@ -30,7 +28,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'cloudinary',
-    'django_cloudinary_storage',  # Python 3.13 compatible
+    'django_cloudinary_storage',
     'MominKart',  # Your app
 ]
 
@@ -64,29 +62,15 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'MominKart.wsgi.application'
 
-# ===================== Database =======================================
+# ===================== Database =====================
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',  # Or PostgreSQL on Render
+        'ENGINE': 'django.db.backends.sqlite3',
         'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
 
-# ===================== Password validation ============================
-AUTH_PASSWORD_VALIDATORS = [
-    {'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',},
-    {'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',},
-    {'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator',},
-    {'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',},
-]
-
-# ===================== Internationalization ==========================
-LANGUAGE_CODE = 'en-us'
-TIME_ZONE = 'UTC'
-USE_I18N = True
-USE_TZ = True
-
-# ===================== Static & Media =================================
+# ===================== Static & Media =====================
 STATIC_URL = '/static/'
 STATIC_ROOT = BASE_DIR / 'staticfiles'
 STATICFILES_DIRS = [BASE_DIR / 'static']
@@ -95,16 +79,14 @@ STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 MEDIA_URL = '/media/'
 DEFAULT_FILE_STORAGE = 'django_cloudinary_storage.storage.MediaCloudinaryStorage'
 
-# ===================== Cloudinary config ==============================
 CLOUDINARY_STORAGE = {
     'CLOUD_NAME': os.getenv('CLOUDINARY_CLOUD_NAME'),
     'API_KEY': os.getenv('CLOUDINARY_API_KEY'),
     'API_SECRET': os.getenv('CLOUDINARY_API_SECRET'),
 }
 
-# ===================== Default primary key ============================
-DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
-
-# ===================== Login redirect =================================
+# ===================== Auth =========================
 LOGIN_URL = 'user_login'
 LOGIN_REDIRECT_URL = 'homepage'
+
+DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
