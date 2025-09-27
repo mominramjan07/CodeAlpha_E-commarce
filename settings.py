@@ -13,14 +13,13 @@ DEBUG = False
 ALLOWED_HOSTS = [
     '127.0.0.1',
     'localhost',
-    'codealpha-e-commarce-1.onrender.com',
-    '.onrender.com',
+    'codealpha-e-commarce.onrender.com'
 ]
 
 CSRF_TRUSTED_ORIGINS = [
-    'https://codealpha-e-commarce-1.onrender.com',
-    'https://*.onrender.com',
+    'https://codealpha-e-commarce.onrender.com'
 ]
+
 
 # ===================== Application definition =========================
 INSTALLED_APPS = [
