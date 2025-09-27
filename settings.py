@@ -1,12 +1,17 @@
 from pathlib import Path
+import os
+from dotenv import load_dotenv
+
+# Load environment variables from .env
+load_dotenv()
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 # ===================== Render Production Settings =====================
-SECRET_KEY = 'django-insecure-e67-rjw4^u6^l+4fb5f(m@yh-8e1ibtzr31=m3y%o+hk!28s00'  # Keep secret
-DEBUG = False
+SECRET_KEY = os.getenv('SECRET_KEY', 'django-insecure-default-key')
+DEBUG = os.getenv('DEBUG', 'False') == 'True'
 
-ALLOWED_HOSTS = ['*']  # Replace with your Render URL
+ALLOWED_HOSTS = os.getenv('ALLOWED_HOSTS', '*').split(',')
 
 # ===================== Application definition =========================
 INSTALLED_APPS = [
@@ -16,12 +21,14 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'cloudinary',
+    'django_cloudinary_storage',  # Python 3.13 compatible
     'MominKart',  # Your app
 ]
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
-    'whitenoise.middleware.WhiteNoiseMiddleware',  # For static files on Render
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -52,7 +59,7 @@ WSGI_APPLICATION = 'MominKart.wsgi.application'
 # ===================== Database =======================================
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',  # Can use PostgreSQL on Render later
+        'ENGINE': 'django.db.backends.sqlite3',  # Or PostgreSQL on Render
         'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
@@ -73,12 +80,19 @@ USE_TZ = True
 
 # ===================== Static & Media =================================
 STATIC_URL = '/static/'
-STATIC_ROOT = BASE_DIR / 'staticfiles'  # Render will serve static files from here
+STATIC_ROOT = BASE_DIR / 'staticfiles'
 STATICFILES_DIRS = [BASE_DIR / 'static']
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 MEDIA_URL = '/media/'
-MEDIA_ROOT = BASE_DIR / 'media'
+DEFAULT_FILE_STORAGE = 'django_cloudinary_storage.storage.MediaCloudinaryStorage'
+
+# ===================== Cloudinary config ==============================
+CLOUDINARY_STORAGE = {
+    'CLOUD_NAME': os.getenv('CLOUDINARY_CLOUD_NAME'),
+    'API_KEY': os.getenv('CLOUDINARY_API_KEY'),
+    'API_SECRET': os.getenv('CLOUDINARY_API_SECRET'),
+}
 
 # ===================== Default primary key ============================
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
