@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% block content %}
+<section class="main-content">
+    <div class="products">
+    {% for clothing in Clothings %}
+    <div class="product-card">
+        <img src="{{ clothing.image.url }}" alt="{{ clothing.name }}">
+        <h4> {{ clothing.name }}</h4>
+        <p>₹{{ clothing.price }}</p>
+        <button><a href="{% url 'add_to_cart' clothing.id %}" class="btn">Add to Cart</a></button>
+    </div>
+    {% endfor %}
+    </div>
+    <div style="text-align: center; margin-top: 20px;">
+        <a href="{% url 'view_cart' %}" class="btn">Go to Cart</a>
+    </div>
+</section>
+{% endblock %}

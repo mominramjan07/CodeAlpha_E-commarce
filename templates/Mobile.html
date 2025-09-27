@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% block content %}
+<section class="main-content">
+    <div class="products">
+    {% for Mobile in Mobiles %}
+    <div class="product-card">
+        <img src="{{ Mobile.image.url }}" alt="{{ Mobile.name }}">
+        <h4> {{ Mobile.name }}</h4>
+        <p>₹{{ Mobile.price }}</p>
+       <button> <a href="{% url 'add_to_cart' Mobile.id %}" class="btn">Add to Cart</a><button>
+    </div>
+    {% endfor %}
+    </div>
+    <div style="text-align: center; margin-top: 20px;">
+        <a href="{% url 'view_cart' %}" class="btn">Go to Cart</a>
+    </div>
+</section>
+{% endblock %}

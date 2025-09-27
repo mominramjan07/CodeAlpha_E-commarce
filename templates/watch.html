@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% block content %}
+<section class="main-content">
+    <div class="products">
+    {% for watch in watchs %}
+    <div class="product-card">
+        <img src="{{ watch.image.url }}" alt="{{ watch.name }}">
+        <h4> {{ watch.name }}</h4>
+        <p>₹{{ watch.price }}</p>
+        <button><a href="{% url 'add_to_cart' watch.id %}" class="btn">Add to Cart</a><button>
+    </div>
+    {% endfor %}
+    </div>
+    <div style="text-align: center; margin-top: 20px;">
+        <a href="{% url 'view_cart' %}" class="btn">Go to Cart</a>
+    </div>
+</section>
+{% endblock %}

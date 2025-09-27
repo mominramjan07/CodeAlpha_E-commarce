@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="main-content">
+  <h1>Checkout</h1>
+
+  {% if success %}
+    <h2>✅ Order placed successfully!</h2>
+    <p>Thank you <strong>{{ order.name }}</strong> for your purchase.</p>
+    <p>Your Order ID: <strong>#{{ order.id }}</strong></p>
+    <p>Status: {{ order.status }}</p>
+    <a href="{% url 'homepage' %}" class="continue-btn">Continue Shopping</a>
+  {% else %}
+
+    <h3>Your Items</h3>
+    <table class="checkout-table">
+      <tr><th>Product</th><th>Qty</th><th>Subtotal</th></tr>
+      {% for it in items %}
+        <tr>
+          <td>{{ it.product.name }}</td>
+          <td>{{ it.quantity }}</td>
+          <td>₹{{ it.subtotal }}</td>
+        </tr>
+      {% endfor %}
+    </table>
+    <p class="checkout-total"><strong>Total:</strong> ₹{{ total }}</p>
+
+    <h3>Billing Details</h3>
+    <form method="post" class="checkout-form">
+      {% csrf_token %}
+      {{ form.as_p }}
+      <button type="submit">Place Order</button>
+    </form>
+
+  {% endif %}
+</div>
+{% endblock %}

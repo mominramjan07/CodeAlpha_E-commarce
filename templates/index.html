@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% block content %}
+{% comment %} <div class="slider">
+ <!---- <div class="slides">
+        <div class="slide"><img src="/static/img/logo.png" alt="Slide 1"></div>
+        <div class="slide"><img src="/static/img/ecom.webp" alt="Slide 2"></div>
+        <div class="slide"><img src="/static/img/abc.jpg" alt="Slide 3"></div>
+    </div>-->
+</div> {% endcomment %}
+<section class="main-content">
+    <div class="products">
+    {% for product in products %}
+    <div class="product-card">
+        <img src="{{ product.image.url }}" alt="{{ product.name }}">
+        <h4> {{ product.name }}</h4>
+        <p>₹{{ product.price }}</p>
+       <button> <a href="{% url 'add_to_cart' product.id %}" >Add to Cart</a></button>
+    </div>
+    {% endfor %}
+    </div>
+    <div style="text-align: center; margin-top: 20px;">
+   <button> <a href="{% url 'view_cart' %}" >Go to Cart 🛒</a> </button>
+    </div>
+</section>
+{% endblock %}

@@ -1,0 +1,112 @@
+/* ================= Cart Page ================= */
+.main-content h1 {
+  font-size: 26px;
+  color: #203a43;
+  margin-bottom: 20px;
+  text-align: center;
+  border-bottom: 3px solid #4ca1af;
+  display: inline-block;
+  padding-bottom: 6px;
+}
+
+/* Cart Table */
+.cart-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 15px;
+  background: #fff;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.cart-table th,
+.cart-table td {
+  padding: 12px 15px;
+  text-align: center;
+  font-size: 14px;
+}
+
+.cart-table th {
+  background: linear-gradient(135deg, #2c3e50, #4ca1af);
+  color: #fff;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+.cart-table tr {
+  border-bottom: 1px solid #eee;
+}
+
+.cart-table tr:hover {
+  background: #f9f9f9;
+}
+
+/* Quantity Input */
+.cart-table input[type="number"] {
+  width: 60px;
+  padding: 6px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  text-align: center;
+  outline: none;
+  transition: 0.3s;
+}
+
+.cart-table input[type="number"]:focus {
+  border-color: #4ca1af;
+  box-shadow: 0 0 4px rgba(76,161,175,0.4);
+}
+
+/* Update Button */
+.cart-table button {
+  background: #4ca1af;
+  color: #fff;
+  border: none;
+  padding: 6px 12px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 13px;
+  transition: 0.3s;
+}
+
+.cart-table button:hover {
+  background: #2c3e50;
+}
+
+/* Remove Link */
+.cart-table a {
+  color: #e74c3c;
+  font-weight: bold;
+  text-decoration: none;
+  font-size: 13px;
+}
+
+.cart-table a:hover {
+  text-decoration: underline;
+}
+
+/* Cart Total */
+.cart-total {
+  margin-top: 20px;
+  text-align: right;
+  font-size: 16px;
+  font-weight: bold;
+  color: #203a43;
+}
+
+/* Checkout Button */
+.checkout-btn {
+  display: inline-block;
+  margin-top: 12px;
+  background: #ffda79;
+  color: #333;
+  padding: 10px 18px;
+  border-radius: 8px;
+  font-weight: bold;
+  transition: 0.3s;
+}
+
+.checkout-btn:hover {
+  background: #f1c40f;
+}
