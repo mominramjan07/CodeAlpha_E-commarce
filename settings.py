@@ -16,7 +16,9 @@ ALLOWED_HOSTS = [
     'localhost',
     '.onrender.com'   # Render का domain allow करने के लिए
 ]
-
+CSRF_TRUSTED_ORIGINS = [
+    "https://*.onrender.com",
+]
 # ===================== Application definition =========================
 INSTALLED_APPS = [
     'django.contrib.admin',
