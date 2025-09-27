@@ -9,16 +9,11 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 # ===================== Render Production Settings =====================
 SECRET_KEY = os.getenv('SECRET_KEY', 'django-insecure-default-key')
-DEBUG = os.getenv('DEBUG', 'False') == 'True'
+DEBUG = False
 
-ALLOWED_HOSTS = [
-    '127.0.0.1',
-    'localhost',
-    '.onrender.com'   # Render का domain allow करने के लिए
-]
-CSRF_TRUSTED_ORIGINS = [
-    "https://*.onrender.com",
-]
+ALLOWED_HOSTS = ["127.0.0.1", "localhost", ".onrender.com"]
+
+CSRF_TRUSTED_ORIGINS = ["https://*.onrender.com"]
 # ===================== Application definition =========================
 INSTALLED_APPS = [
     'django.contrib.admin',
