@@ -13,14 +13,15 @@ DEBUG = False
 ALLOWED_HOSTS = [
     '127.0.0.1',
     'localhost',
-    'codealpha-e-commarce.onrender.com',
-    '.onrender.com',  # सभी Render सबडोमेन के लिए
+    'codealpha-e-commarce-1.onrender.com',
+    '.onrender.com',
 ]
 
 CSRF_TRUSTED_ORIGINS = [
-    'https://codealpha-e-commarce.onrender.com',
+    'https://codealpha-e-commarce-1.onrender.com',
     'https://*.onrender.com',
 ]
+
 # ===================== Application definition =========================
 INSTALLED_APPS = [
     'django.contrib.admin',
